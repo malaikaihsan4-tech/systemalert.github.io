@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Alert</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b0b0b;
+  color:#e6e6e6;
+  overflow:hidden;
+}/* WARNING */
+#warning{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+button{
+padding:12px 24px;
+margin-top:20px;
+cursor:pointer;
+background:#222;
+color:#fff;
+border:1px solid #555;
+}
+
+/* TERMINAL */
+#terminal{
+display:none;
+background:#000;
+color:#00ff88;
+font-family:monospace;
+height:100vh;
+padding:20px;
+overflow-y:auto;
+white-space:pre-wrap;
+}
+
+/* SHAKE */
+.shake{animation:shake 0.12s infinite;}
+@keyframes shake{
+0%{transform:translate(2px,2px);}
+50%{transform:translate(-2px,-2px);}
+100%{transform:translate(2px,2px);}
+}
+
+/* GLITCH TEXT */
+.glitch{
+color:#ff0040;
+animation:glitch 0.2s infinite;
+}
+@keyframes glitch{
+0%{opacity:1;}
+50%{opacity:0.3;}
+100%{opacity:1;}
+}
+
+/* CRASH */
+#crash{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:#000;
+color:#ff2a2a;
+padding:40px;
+font-size:22px;
+z-index:100;
+}
+</style>
+
+</head><body><div id="warning">
+  <h1>⚠ Suspicious Content</h1>
+  <p>This page may behave unpredictably on your system.</p>
+  <button onclick="start()">Continue</button>
+</div><div id="terminal"></div><div id="crash">
+KERNEL FAILURE<br><br>
+Stack overflow detected<br>
+System halted<br><br>
+Restarting...
+</div><script>
+const terminal=document.getElementById("terminal");
+
+/* SOUND */
+const alarm=new Audio("https://www.soundjay.com/button/beep-07.wav");
+
+/* PRINT */
+function print(t=""){
+  terminal.innerHTML+=t+"\n";
+  terminal.scrollTop=terminal.scrollHeight;
+}
+
+/* START */
+function start(){
+  document.getElementById("warning").style.display="none";
+  terminal.style.display="block";
+  attack();
+}
+
+/* TYPE */
+function type(lines,speed=14,next){
+  let l=0,c=0;
+  function t(){
+    if(l>=lines.length){ if(next) next(); return; }
+    if(c<lines[l].length){
+      terminal.innerHTML+=lines[l][c++];
+      terminal.scrollTop=terminal.scrollHeight;
+      setTimeout(t,speed);
+    }else{
+      terminal.innerHTML+="\n";
+      l++; c=0;
+      setTimeout(t,60);
+    }
+  }
+  t();
+}
+
+/* ATTACK */
+function attack(){
+document.body.classList.add("shake");
+alarm.play();
+
+const lines=[
+"!! ALERT !!",
+"Process anomaly detected...",
+"Scanning environment...",
+"Injecting module...",
+"Running exploit...",
+"Privilege escalation...",
+"Access: elevated",
+"Linking external node...",
+"Handshake complete ✔",
+"Target locked: Abdullah",
+"Preparing data stream...",
+"Initializing sequence..."
+];
+
+type(lines,12,crack);
+}
+
+/* CRACK */
+function crack(){
+print("");
+print("Decoding stream...");
+
+let percent=0;
+
+const bar=setInterval(()=>{
+  percent+=2;
+  let hashes="#".repeat(percent/2);
+  print("["+hashes.padEnd(50,".")+"] "+percent+"%");
+  if(percent>=100){
+    clearInterval(bar);
+    print("Sequence complete ✔");
+    setTimeout(crash,1200);
+  }
+},120);
+}
+
+/* CRASH */
+function crash(){
+document.body.classList.remove("shake");
+document.getElementById("crash").style.display="block";
+
+setTimeout(()=>{
+  document.getElementById("crash").style.display="none";
+  terminal.innerHTML="";
+  love();
+},2500);
+}
+
+/* LOVE */
+function love(){
+const lines=[
+"...reinitializing...",
+"...loading module...",
+"",
+"Hey Abdullah 😎",
+"",
+"Got you for a second? 😏",
+"",
+"This wasn’t a hack.",
+"",
+"It was me 💖",
+"",
+"Malaika Ihsan ❤️",
+"",
+"Status:",
+"Heart: captured",
+"Owner: Malaika",
+"",
+"You’re stuck with me 😂"
+];
+type(lines,18,spam);
+}
+
+/* CHAOS */
+function spam(){
+  const msgs=["I LOVE YOU ❤️","NO ESCAPE 😈","ABDULLAH 💖","MALAIKA 😂"];
+  setInterval(()=>{
+    const d=document.createElement("div");
+    d.style.position="fixed";
+    d.style.top=Math.random()*90+"%";
+    d.style.left=Math.random()*90+"%";
+    d.style.color="pink";
+    d.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),2000);
+  },600);
+}
+</script></body>
+</html>
