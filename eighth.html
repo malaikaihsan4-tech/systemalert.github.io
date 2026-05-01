@@ -186,7 +186,7 @@ const lines=[
 "",
 "It was me 💖",
 "",
-"Malaika Ihsan ❤️",
+"Malaika ❤️",
 "",
 "Status:",
 "Heart: captured",
@@ -211,5 +211,60 @@ function spam(){
     setTimeout(()=>d.remove(),2000);
   },600);
 }
+  /* FINAL CUTE SCAN */
+function finalScan(){
+
+const lines=[
+"",
+"Running final scan...",
+"Analyzing environment...",
+"...",
+"...",
+"Collecting visual data...",
+"Running AI detection...",
+"Subject detected...",
+"Identity match: Muskan 💖",
+"Processing traits...",
+"...",
+"...",
+"Too much cuteness detected 😳💖",
+"System overload...",
+"Switching to love protocol...",
+"Final verdict:",
+"You are TOO CUTE 😂❤️"
+];
+
+type(lines,20,spam);
+}
+
+/* CHAOS SPAM */
+function spam(){
+  const msgs=[
+    "I LOVE YOU ❤️",
+    "MUSKAN 💖",
+    "NO ESCAPE 😈",
+    "MALAIKA 😂"
+	"KUTTI"
+"MUSALANR"
+  ];
+
+  setInterval(()=>{
+    const d=document.createElement("div");
+
+    d.style.position="fixed";
+    d.style.top=Math.random()*90+"%";
+    d.style.left=Math.random()*90+"%";
+    d.style.color="pink";
+    d.style.fontSize="18px";
+
+    d.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+
+    document.body.appendChild(d);
+
+    setTimeout(()=>d.remove(),2000);
+
+  },600);
+}
+
 </script></body>
 </html>
